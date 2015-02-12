@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 FEB 2015 06:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 FEB 2015 07:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1398,11 +1398,11 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 21397 strings out of 493117
- 383723 string characters out of 6135433
+ 21394 strings out of 493117
+ 383699 string characters out of 6135433
  483586 words of memory out of 5000000
  24290 multiletter control sequences out of 15000+600000
- 32558 words of font info for 144 fonts, out of 8000000 for 9000
+ 32399 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,11n,56p,489b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{
@@ -1411,7 +1411,7 @@ ive/2014/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/l
 ocal/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/te
 xlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2
 014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (4 pages, 72463 bytes).
+Output written on RJwrapper.pdf (4 pages, 72491 bytes).
 PDF statistics:
  58 PDF objects out of 1000 (max. 8388607)
  47 compressed objects within 1 object stream

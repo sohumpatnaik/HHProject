@@ -167,9 +167,9 @@ strategies used in Tables I, II, and III.
 
 The Random Ascent Strategy in Table IV is a strategy that carries out
 the Stochastic Hill Climbing strategy where an input vector moves to a
-randomly chosen neighbor whose profit is higher than the current input
-vector's profit level and continues to do so until a local maximum is
-reached.
+randomly chosen neighbor whose profit level is higher than the current
+input vector's profit level and continues to do so until a local maximum
+is reached.
 
 \begin{center}
 \hspace{2cm} \textbf{Number of Connections Per Input}
@@ -245,11 +245,11 @@ thousand times.
 \hline
   & 1 & 2 & 3 & 4 & 5\\
 \hline
-Steepest Ascent & 62.3 (1.1) & 65.8 (1.1) & 66.6 (1.1) & -0.1 (0.2) & 0.2 (0.2)\\
+Budget Steepest Ascent & 62.3 (1.1) & 65.8 (1.1) & 66.6 (1.1) & -0.1 (0.2) & 0.2 (0.2)\\
 \hline
-Median Ascent & 62.2 (1.1) & 63.3 (1.1) & 66.6 (1) & 65.8 (1) & 62.2 (1.1)\\
+Budget Median Ascent & 62.2 (1.1) & 63.3 (1.1) & 66.6 (1) & 65.8 (1) & 62.2 (1.1)\\
 \hline
-Least Ascent & 62.1 (1.1) & 59.5 (1) & 56.8 (1.1) & 59.2 (1.1) & 59.3 (1)\\
+Budget Least Ascent & 62.1 (1.1) & 59.5 (1) & 56.8 (1.1) & 59.2 (1.1) & 59.3 (1)\\
 \hline
 \end{tabular}
 
@@ -269,7 +269,7 @@ Strategy, the slowest-moving strategy of the three strategies that are
 used, finds lower long-run profits than the other strategies when there
 are two and three connections. When there are four and five connections,
 the Budget Median Ascent Strategy outperforms the Budget Least Ascent
-Strategy. It is even more interesting to note that as there are four and
+Strategy. It is even more interesting that when there are four and
 five connections, the long-run profits from the Budget Steepest Ascent
 Strategy drops to near zero. These results can probably be attributed to
 the fact that this strategy allows for the movement in directions that
