@@ -1,0 +1,571 @@
+---
+title: Ideas in Kane's Local Hillclimbing on an Economic Landscape
+author:
+  - name: Sohum Patnaik '18
+    email:  sp12@williams.edu
+abstract: >
+  In this paper we carry out the ideas in Kane's \emph{Local Hillclimbing on an Economic Landscape} (1996) by applying optimization strategies on models outlined in his paper.
+output: rticles::rjournal_article
+---
+
+```{r results='hide', echo=FALSE, message=FALSE, warning=FALSE}
+library(HHProject)
+library(knitr)
+library(ggplot2)
+
+# Read the pre-gathered data
+# Table 1
+
+t1maxc1 <- read.csv("vigndata/t1maxc1.csv")
+t1maxc2 <- read.csv("vigndata/t1maxc2.csv")
+t1maxc3 <- read.csv("vigndata/t1maxc3.csv")
+t1maxc4 <- read.csv("vigndata/t1maxc4.csv")
+t1maxc5 <- read.csv("vigndata/t1maxc5.csv")
+
+t1medc1 <- read.csv("vigndata/t1medc1.csv")
+t1medc2 <- read.csv("vigndata/t1medc2.csv")
+t1medc3 <- read.csv("vigndata/t1medc3.csv")
+t1medc4 <- read.csv("vigndata/t1medc4.csv")
+t1medc5 <- read.csv("vigndata/t1medc5.csv")
+
+t1minc1 <- read.csv("vigndata/t1minc1.csv")
+t1minc2 <- read.csv("vigndata/t1minc2.csv")
+t1minc3 <- read.csv("vigndata/t1minc3.csv")
+t1minc4 <- read.csv("vigndata/t1minc4.csv")
+t1minc5 <- read.csv("vigndata/t1minc5.csv")
+
+# Table 2
+
+t2maxc1 <- read.csv("vigndata/t2maxc1.csv")
+t2maxc2 <- read.csv("vigndata/t2maxc2.csv")
+t2maxc3 <- read.csv("vigndata/t2maxc3.csv")
+t2maxc4 <- read.csv("vigndata/t2maxc4.csv")
+t2maxc5 <- read.csv("vigndata/t2maxc5.csv")
+
+t2medc1 <- read.csv("vigndata/t2medc1.csv")
+t2medc2 <- read.csv("vigndata/t2medc2.csv")
+t2medc3 <- read.csv("vigndata/t2medc3.csv")
+t2medc4 <- read.csv("vigndata/t2medc4.csv")
+t2medc5 <- read.csv("vigndata/t2medc5.csv")
+
+t2minc1 <- read.csv("vigndata/t2minc1.csv")
+t2minc2 <- read.csv("vigndata/t2minc2.csv")
+t2minc3 <- read.csv("vigndata/t2minc3.csv")
+t2minc4 <- read.csv("vigndata/t2minc4.csv")
+t2minc5 <- read.csv("vigndata/t2minc5.csv")
+
+# Table 3
+
+t3maxc1 <- read.csv("vigndata/t3maxc1.csv")
+t3maxc2 <- read.csv("vigndata/t3maxc2.csv")
+t3maxc3 <- read.csv("vigndata/t3maxc3.csv")
+t3maxc4 <- read.csv("vigndata/t3maxc4.csv")
+t3maxc5 <- read.csv("vigndata/t3maxc5.csv")
+
+t3medc1 <- read.csv("vigndata/t3medc1.csv")
+t3medc2 <- read.csv("vigndata/t3medc2.csv")
+t3medc3 <- read.csv("vigndata/t3medc3.csv")
+t3medc4 <- read.csv("vigndata/t3medc4.csv")
+t3medc5 <- read.csv("vigndata/t3medc5.csv")
+
+t3minc1 <- read.csv("vigndata/t3minc1.csv")
+t3minc2 <- read.csv("vigndata/t3minc2.csv")
+t3minc3 <- read.csv("vigndata/t3minc3.csv")
+t3minc4 <- read.csv("vigndata/t3minc4.csv")
+t3minc5 <- read.csv("vigndata/t3minc5.csv")
+
+# Table 4
+randc1 <- read.csv("vigndata/randc1.csv")
+randc2 <- read.csv("vigndata/randc2.csv")
+randc3 <- read.csv("vigndata/randc3.csv")
+randc4 <- read.csv("vigndata/randc4.csv")
+randc5 <- read.csv("vigndata/randc5.csv")
+
+# Table 5
+fiftymaxc1 <- read.csv("vigndata/fiftymaxc1f500.csv")
+fiftymaxc2 <- read.csv("vigndata/fiftymaxc2f500.csv")
+fiftymaxc3 <- read.csv("vigndata/fiftymaxc3f500.csv")
+fiftymaxc4 <- read.csv("vigndata/fiftymaxc4f500.csv")
+fiftymaxc5 <- read.csv("vigndata/fiftymaxc5f500.csv")
+
+fiftymedc1 <- read.csv("vigndata/fiftymedc1f500.csv")
+fiftymedc2 <- read.csv("vigndata/fiftymedc2f500.csv")
+fiftymedc3 <- read.csv("vigndata/fiftymedc3f500.csv")
+fiftymedc4 <- read.csv("vigndata/fiftymedc4f500.csv")
+fiftymedc5 <- read.csv("vigndata/fiftymedc1f500.csv")
+
+fiftyminc1 <- read.csv("vigndata/fiftyminc1f500.csv")
+fiftyminc2 <- read.csv("vigndata/fiftyminc2f500.csv")
+fiftyminc3 <- read.csv("vigndata/fiftyminc3f500.csv")
+fiftyminc4 <- read.csv("vigndata/fiftyminc4f500.csv")
+fiftyminc5 <- read.csv("vigndata/fiftyminc5f500.csv")
+```
+
+## Introduction
+Firms have always been interested in finding the optimal allocation of resources to produce the greatest profits. However, simulations have often been inaccurate since proposed profit maximizing functions were tractable and easy to maximize. This is not the case for firms in the real world. Kane (1996) argues that profit functions that are difficult to maximize for all agents are more worthwhile to utilize for modeling purposes. Consequently, Kane (1996) proposes a profit function that enables various strategies of firms to be tested on complex landscapes that mimic a real world economy.
+
+In this paper, we carry out Kane's (1996) ideas and analyze various strategies for profit maximization. We see how the behavior of firms affects those firms' long-run profits and end up with similar findings to Kane (1996): firms that move slower in maximizing their profits generally end up with higher long-run profits than firms that move quickly in maximizing their profits.
+
+## Data and Methods
+For our analysis, we generated a random input vector on a landscape based off a given budget and number of inputs. We then carried out various optimization strategies where firms search their neighborhood, as defined by Kane (1996), to analyze how the different strategies perform in trying to maximize long-run profits. Multiple strategies were used with a varying number of connections, which determines how many neighbors every point in each input vector has.
+
+## Strategies
+Hillclimbing strategies and many of its variants, several of which were demonstrated by Kane (1996), are primarily used in our analysis.
+
+The Steepest Ascent Strategy in Tables I, II, and III is a strategy that moves to the neighbor with the highest profit and continues to do so until a local maximum is reached.
+
+The Median Ascent Strategy in Tables I, II, and III is a strategy that moves to the neighbor whose profits are the median of the neighbors with profits higher than the current input vector and continues to do so until a local maximum is reached.
+
+The Least Ascent Strategy in Tables I, II, and III is a strategy that moves to the neighbor with the lowest profit that is still higher than the current input vector's profit and continues to do so until a local maximum is reached.
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+```{r kable1, echo=FALSE}
+
+# Table I (profits)
+
+
+t1 <- NULL
+for (i in 1:3){
+  tempval <- 1:5
+  t1 <- rbind(t1, tempval)
+}
+
+# first row
+
+mpr <- round(mean(t1maxc1[,2]) * 100, digits=1)
+se <- round(sd(t1maxc1[,2])/sqrt(length(t1maxc1[,2])) * 100, digits=1)
+t1[1,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1maxc2[,2]) * 100, digits=1)
+se <- round(sd(t1maxc2[,2])/sqrt(length(t1maxc2[,2])) * 100, digits=1)
+t1[1,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1maxc3[,2]) * 100, digits=1)
+se <- round(sd(t1maxc3[,2])/sqrt(length(t1maxc3[,2])) * 100, digits=1)
+t1[1,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1maxc4[,2]) * 100, digits=1)
+se <- round(sd(t1maxc4[,2])/sqrt(length(t1maxc4[,2])) * 100, digits=1)
+t1[1,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1maxc5[,2]) * 100, digits=1)
+se <- round(sd(t1maxc5[,2])/sqrt(length(t1maxc5[,2])) * 100, digits=1)
+t1[1,5] <- paste0(mpr, " (", se, ")")
+
+
+# second row
+
+mpr <- round(mean(t1medc1[,2]) * 100, digits=1)
+se <- round(sd(t1medc1[,2])/sqrt(length(t1medc1[,2])) * 100, digits=1)
+t1[2,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1medc2[,2]) * 100, digits=1)
+se <- round(sd(t1medc2[,2])/sqrt(length(t1medc2[,2])) * 100, digits=1)
+t1[2,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1medc3[,2]) * 100, digits=1)
+se <- round(sd(t1medc3[,2])/sqrt(length(t1medc3[,2])) * 100, digits=1)
+t1[2,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1medc4[,2]) * 100, digits=1)
+se <- round(sd(t1medc4[,2])/sqrt(length(t1medc4[,2])) * 100, digits=1)
+t1[2,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1medc5[,2]) * 100, digits=1)
+se <- round(sd(t1medc5[,2])/sqrt(length(t1medc5[,2])) * 100, digits=1)
+t1[2,5] <- paste0(mpr, " (", se, ")")
+
+# third row
+
+mpr <- round(mean(t1minc1[,2]) * 100, digits=1)
+se <- round(sd(t1minc1[,2])/sqrt(length(t1minc1[,2])) * 100, digits=1)
+t1[3,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1minc2[,2]) * 100, digits=1)
+se <- round(sd(t1minc2[,2])/sqrt(length(t1minc2[,2])) * 100, digits=1)
+t1[3,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1minc3[,2]) * 100, digits=1)
+se <- round(sd(t1minc3[,2])/sqrt(length(t1minc3[,2])) * 100, digits=1)
+t1[3,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1minc4[,2]) * 100, digits=1)
+se <- round(sd(t1minc4[,2])/sqrt(length(t1minc4[,2])) * 100, digits=1)
+t1[3,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t1minc5[,2]) * 100, digits=1)
+se <- round(sd(t1minc5[,2])/sqrt(length(t1minc5[,2])) * 100, digits=1)
+t1[3,5] <- paste0(mpr, " (", se, ")")
+
+rownames(t1) <- c("Steepest Ascent", "Median Ascent", "Least Ascent")
+colnames(t1) <- c(1:5)
+
+kable(t1, format="latex", align='c')
+```
+\\
+\emph{Table I}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function come from [-1,1]. Standard errors are in parentheses.
+\end{center}
+
+In Table I, the Median Ascent Strategy consistently outperforms the Steepest Ascent Strategy, and the Least Ascent Strategy consistently outperforms the Median Ascent Strategy. We see that strategies that move through a landscape with the intent of slowly increasing their profit values end up doing better than strategies that try to increase their profit values as quickly as possible.
+
+\newpage
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+```{r kable2, echo=FALSE}
+# Table 2 (Profits)
+
+t2 <- NULL
+for (i in 1:3){
+  tempval <- 1:5
+  t2 <- rbind(t2, tempval)
+}
+
+# first row
+
+mpr <- round(mean(t2maxc1[,2]) * 100, digits=1)
+se <- round(sd(t2maxc2[,2])/sqrt(length(t2maxc2[,2])) * 100, digits=1)
+t2[1,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2maxc2[,2]) * 100, digits=1)
+se <- round(sd(t2maxc2[,2])/sqrt(length(t2maxc2[,2])) * 100, digits=1)
+t2[1,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2maxc3[,2]) * 100, digits=1)
+se <- round(sd(t2maxc3[,2])/sqrt(length(t2maxc3[,2])) * 100, digits=1)
+t2[1,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2maxc4[,2]) * 100, digits=1)
+se <- round(sd(t2maxc4[,2])/sqrt(length(t2maxc4[,2])) * 100, digits=1)
+t2[1,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2maxc5[,2]) * 100, digits=1)
+se <- round(sd(t2maxc5[,2])/sqrt(length(t2maxc5[,2])) * 100, digits=1)
+t2[1,5] <- paste0(mpr, " (", se, ")")
+
+
+# second row
+
+mpr <- round(mean(t2medc1[,2]) * 100, digits=1)
+se <- round(sd(t2medc2[,2])/sqrt(length(t2medc2[,2])) * 100, digits=1)
+t2[2,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2medc2[,2]) * 100, digits=1)
+se <- round(sd(t2medc2[,2])/sqrt(length(t2medc2[,2])) * 100, digits=1)
+t2[2,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2medc3[,2]) * 100, digits=1)
+se <- round(sd(t2medc3[,2])/sqrt(length(t2medc3[,2])) * 100, digits=1)
+t2[2,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2medc4[,2]) * 100, digits=1)
+se <- round(sd(t2medc4[,2])/sqrt(length(t2medc4[,2])) * 100, digits=1)
+t2[2,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2medc5[,2]) * 100, digits=1)
+se <- round(sd(t2medc5[,2])/sqrt(length(t2medc5[,2])) * 100, digits=1)
+t2[2,5] <- paste0(mpr, " (", se, ")")
+
+# third row
+
+mpr <- round(mean(t2minc1[,2]) * 100, digits=1)
+se <- round(sd(t2minc2[,2])/sqrt(length(t2minc2[,2])) * 100, digits=1)
+t2[3,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2minc2[,2]) * 100, digits=1)
+se <- round(sd(t2minc2[,2])/sqrt(length(t2minc2[,2])) * 100, digits=1)
+t2[3,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2minc3[,2]) * 100, digits=1)
+se <- round(sd(t2minc3[,2])/sqrt(length(t2minc3[,2])) * 100, digits=1)
+t2[3,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2minc4[,2]) * 100, digits=1)
+se <- round(sd(t2minc4[,2])/sqrt(length(t2minc4[,2])) * 100, digits=1)
+t2[3,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t2minc5[,2]) * 100, digits=1)
+se <- round(sd(t2minc5[,2])/sqrt(length(t2minc5[,2])) * 100, digits=1)
+t2[3,5] <- paste0(mpr, " (", se, ")")
+
+rownames(t2) <- c("Steepest Ascent", "Median Ascent", "Least Ascent")
+colnames(t2) <- c(1:5)
+
+
+kable(t2, format="latex", align='c')
+```
+\\
+\emph{Table II}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function come from [0,1] for linear terms and squared terms, and from [-1,0] for cross products. Standard errors are in parentheses.
+\end{center}
+
+Even though a different profit function (due to a different range of coefficients) is used in Table II than in Table I, similar results are found. The Least Ascent Strategy constantly outperforms the other two strategies that move input vectors to neighbors with higher profit levels.
+
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+```{r kable3, echo=FALSE}
+# Table 3 (Profits)
+
+t3 <- NULL
+for (i in 1:3){
+  tempval <- 1:5
+  t3 <- rbind(t3, tempval)
+}
+
+# first row
+
+mpr <- round(mean(t3maxc1[,2]) * 100, digits=1)
+se <- round(sd(t3maxc1[,2])/sqrt(length(t3maxc1[,2])) * 100, digits=1)
+t3[1,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3maxc2[,2]) * 100, digits=1)
+se <- round(sd(t3maxc2[,2])/sqrt(length(t3maxc2[,2])) * 100, digits=1)
+t3[1,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3maxc3[,2]) * 100, digits=1)
+se <- round(sd(t3maxc3[,2])/sqrt(length(t3maxc3[,2])) * 100, digits=1)
+t3[1,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3maxc4[,2]) * 100, digits=1)
+se <- round(sd(t3maxc4[,2])/sqrt(length(t3maxc4[,2])) * 100, digits=1)
+t3[1,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3maxc5[,2]) * 100, digits=1)
+se <- round(sd(t3maxc5[,2])/sqrt(length(t3maxc5[,2])) * 100, digits=1)
+t3[1,5] <- paste0(mpr, " (", se, ")")
+
+
+# second row
+
+mpr <- round(mean(t3medc1[,2]) * 100, digits=1)
+se <- round(sd(t3medc1[,2])/sqrt(length(t3medc1[,2])) * 100, digits=1)
+t3[2,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3medc2[,2]) * 100, digits=1)
+se <- round(sd(t3medc2[,2])/sqrt(length(t3medc2[,2])) * 100, digits=1)
+t3[2,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3medc3[,2]) * 100, digits=1)
+se <- round(sd(t3medc3[,2])/sqrt(length(t3medc3[,2])) * 100, digits=1)
+t3[2,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3medc4[,2]) * 100, digits=1)
+se <- round(sd(t3medc4[,2])/sqrt(length(t3medc4[,2])) * 100, digits=1)
+t3[2,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3medc5[,2]) * 100, digits=1)
+se <- round(sd(t3medc5[,2])/sqrt(length(t3medc5[,2])) * 100, digits=1)
+t3[2,5] <- paste0(mpr, " (", se, ")")
+
+# third row
+
+mpr <- round(mean(t3minc1[,2]) * 100, digits=1)
+se <- round(sd(t3minc1[,2])/sqrt(length(t3minc1[,2])) * 100, digits=1)
+t3[3,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3minc2[,2]) * 100, digits=1)
+se <- round(sd(t3minc2[,2])/sqrt(length(t3minc2[,2])) * 100, digits=1)
+t3[3,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3minc3[,2]) * 100, digits=1)
+se <- round(sd(t3minc3[,2])/sqrt(length(t3minc3[,2])) * 100, digits=1)
+t3[3,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3minc4[,2]) * 100, digits=1)
+se <- round(sd(t3minc4[,2])/sqrt(length(t3minc4[,2])) * 100, digits=1)
+t3[3,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(t3minc5[,2]) * 100, digits=1)
+se <- round(sd(t3minc5[,2])/sqrt(length(t3minc5[,2])) * 100, digits=1)
+t3[3,5] <- paste0(mpr, " (", se, ")")
+
+rownames(t3) <- c("Steepest Ascent", "Median Ascent", "Least Ascent")
+colnames(t3) <- c(1:5)
+
+
+kable(t3, format="latex", align='c')
+```
+\\
+\emph{Table III}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function are 0 for linear terms, come from [-19,0] for squared terms, and come from [0,2] for cross products. Standard errors are in parentheses.
+\end{center}
+
+Table III is interesting to analyze since even though we find a similar trend to Kane's (1996) findings, the values of the tables themselves differ greatly. The profit function used to generate this table penalizes input values that are different from each other. However, we still find that the Least Ascent Strategy outperforms the other two strategies in every case other than when there are five connections per input.
+
+The different versions of the profit functions shown through Tables I, II, and III clearly demonstrate that strategies that slowly move to neighbors with higher profit levels than the current input vector's profit generally end up with higher long-run profits than strategies that quickly move to neighbors with the highest possible profits. However, it is worth comparing those results with a strategy where an input vector moves to a random neighbor with a profit level higher than its own to see if it will yield results that are similar to one of the strategies used in Tables I, II, and III.
+
+The Random Ascent Strategy in Table IV is a strategy that carries out the Stochastic Hill Climbing strategy where an input vector moves to a randomly chosen neighbor whose profit is higher than the current input vector's profit level and continues to do so until a local maximum is reached.
+
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+```{r kable4, echo=FALSE}
+# Table 4 Profits
+
+t4 <- NULL
+
+# first row
+
+mpr <- round(mean(randc1[,2]) * 100, digits=1)
+se <- round(sd(randc1[,2])/sqrt(length(randc1[,2])) * 100, digits=1)
+t4 <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(randc2[,2]) * 100, digits=1)
+se <- round(sd(randc2[,2])/sqrt(length(randc2[,2])) * 100, digits=1)
+t4 <- cbind(t4, paste0(mpr, " (", se, ")"))
+
+mpr <- round(mean(randc3[,2]) * 100, digits=1)
+se <- round(sd(randc3[,2])/sqrt(length(randc3[,2])) * 100, digits=1)
+t4 <- cbind(t4, paste0(mpr, " (", se, ")"))
+
+mpr <- round(mean(randc4[,2]) * 100, digits=1)
+se <- round(sd(randc4[,2])/sqrt(length(randc4[,2])) * 100, digits=1)
+t4 <- cbind(t4, paste0(mpr, " (", se, ")"))
+
+mpr <- round(mean(randc5[,2]) * 100, digits=1)
+se <- round(sd(randc5[,2])/sqrt(length(randc5[,2])) * 100, digits=1)
+t4 <- cbind(t4, paste0(mpr, " (", se, ")"))
+
+rownames(t4) <- "Random Ascent"
+colnames(t4) <- c(1:5)
+kable(t4, format="latex", align='c')
+
+```
+\\
+\emph{Table IV}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function come from [-1,1]. Standard errors are in parentheses.
+\end{center}
+
+Given that we use the same profit function in Table IV as the profit function used in Table I, it is most appropriate to compare those two tables. We find that the Random Ascent Strategy gives us results that are closest to the Median Ascent Strategy. This makes sense because the table shows us the means of the normalized profits over one thousand landscapes, so the Random Ascent Strategy should return results that are similar to the average of the Least Ascent Strategy and Steepest Ascent Strategy, which is similar to the Median Ascent Strategy.
+
+
+We have found that strategies that constantly move to neighbors with higher profit levels than their own usually end up finding a local maximum. This prevents them from finding the global maximum that most firms are often looking for. Therefore, it would be interesting to implement a strategy which gives firms the option of moving to a neighbor with a lower profit level than their current input vector, as this can possibly lead to ultimately finding an input vector with a profit level that is closer to the global maximum.
+
+Also, given the profit function that Kane (1996) proposes and the results of the long-run profits found in Tables I, II, III, and IV, it would be interesting to look at a strategy that continues moving to neighbors until all of the budget is expended on a single point of an input vector (usually on the point with the highest coefficient) since those input vectors will often yield higher profits than input vectors where the budget is distributed evenly throughout the vector.
+
+The Budget Steepest Ascent Strategy in Table V is a strategy that moves to the neighboring input vectors with the highest profits until a single point of the input vector has all of the budget or until the process is repeated one thousand times.
+
+The Budget Median Ascent Strategy in Table V is a strategy that moves to a neighboring input vector which has a median profit level of the neighboring input levels that have higher profit levels than the current input vector until a single point of the input vector has all of the budget or until the process is repeated one thousand times.
+
+The Budget Least Ascent Strategy in Table V is a strategy that moves to a neighboring input vector with the lowest profit that is still higher than the profit of the current input vector until a single point of the input vector has all of the budget or until the process is repeated one thousand times.
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+```{r kable5, echo=FALSE}
+# Table 5 Profits
+t5 <- NULL
+for (i in 1:3){
+  tempval <- 1:5
+  t5 <- rbind(t5, tempval)
+}
+
+# first row
+
+mpr <- round(mean(fiftymaxc1[,2]) * 100, digits=1)
+se <- round(sd(fiftymaxc1[,2])/sqrt(length(fiftymaxc1[,2])) * 100, digits=1)
+t5[1,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftymaxc2[,2]) * 100, digits=1)
+se <- round(sd(fiftymaxc2[,2])/sqrt(length(fiftymaxc2[,2])) * 100, digits=1)
+t5[1,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftymaxc3[,2]) * 100, digits=1)
+se <- round(sd(fiftymaxc3[,2])/sqrt(length(fiftymaxc3[,2])) * 100, digits=1)
+t5[1,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftymaxc4[,2]) * 100, digits=1)
+se <- round(sd(fiftymaxc4[,2])/sqrt(length(fiftymaxc4[,2])) * 100, digits=1)
+t5[1,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftymaxc5[,2]) * 100, digits=1)
+se <- round(sd(fiftymaxc5[,2])/sqrt(length(fiftymaxc5[,2])) * 100, digits=1)
+t5[1,5] <- paste0(mpr, " (", se, ")")
+
+
+# second row
+
+mpr <- round(mean(fiftymedc1[,2]) * 100, digits=1)
+se <- round(sd(fiftymedc1[,2])/sqrt(length(fiftymedc1[,2])) * 100, digits=1)
+t5[2,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftymedc2[,2]) * 100, digits=1)
+se <- round(sd(fiftymedc2[,2])/sqrt(length(fiftymedc2[,2])) * 100, digits=1)
+t5[2,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftymedc3[,2]) * 100, digits=1)
+se <- round(sd(fiftymedc3[,2])/sqrt(length(fiftymedc3[,2])) * 100, digits=1)
+t5[2,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftymedc4[,2]) * 100, digits=1)
+se <- round(sd(fiftymedc4[,2])/sqrt(length(fiftymedc4[,2])) * 100, digits=1)
+t5[2,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftymedc5[,2]) * 100, digits=1)
+se <- round(sd(fiftymedc5[,2])/sqrt(length(fiftymedc5[,2])) * 100, digits=1)
+t5[2,5] <- paste0(mpr, " (", se, ")")
+
+# third row
+
+mpr <- round(mean(fiftyminc1[,2]) * 100, digits=1)
+se <- round(sd(fiftyminc1[,2])/sqrt(length(fiftyminc1[,2])) * 100, digits=1)
+t5[3,1] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftyminc2[,2]) * 100, digits=1)
+se <- round(sd(fiftyminc2[,2])/sqrt(length(fiftyminc2[,2])) * 100, digits=1)
+t5[3,2] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftyminc3[,2]) * 100, digits=1)
+se <- round(sd(fiftyminc3[,2])/sqrt(length(fiftyminc3[,2])) * 100, digits=1)
+t5[3,3] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftyminc4[,2]) * 100, digits=1)
+se <- round(sd(fiftyminc4[,2])/sqrt(length(fiftyminc4[,2])) * 100, digits=1)
+t5[3,4] <- paste0(mpr, " (", se, ")")
+
+mpr <- round(mean(fiftyminc5[,2]) * 100, digits=1)
+se <- round(sd(fiftyminc5[,2])/sqrt(length(fiftyminc5[,2])) * 100, digits=1)
+t5[3,5] <- paste0(mpr, " (", se, ")")
+
+rownames(t5) <- c("Steepest Ascent", "Median Ascent", "Least Ascent")
+colnames(t5) <- c(1:5)
+
+
+kable(t5, format="latex", align='c')
+
+```
+\\
+\emph{Table V}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function come from [-1,1]. Standard errors are in parentheses.
+\end{center}
+
+The three strategies utilized in Table V mostly yield much higher results than the results of the strategies used in the previous tables.
+
+All three strategies perform similarly with one connection, but the results become more interesting as the number of connections increases. While we have normally found the slowest-moving strategy to outperform the other strategies, we find that in Table V, the Budget Least Ascent Strategy, the slowest-moving strategy of the three strategies that are used, finds lower long-run profits than the other strategies when there are two and three connections. When there are four and five connections, the Budget Median Ascent Strategy outperforms the Budget Least Ascent Strategy. It is even more interesting to note that as there are four and five connections, the long-run profits from the Budget Steepest Ascent Strategy drops to near zero. These results can probably be attributed to the fact that this strategy allows for the movement in directions that would result in lower profits.
+
+Given the strategies used, the Budget Median Ascent Strategy and the Budget Least Ascent Strategy have been found to be safer strategies to use than the Budget Steepest Ascent Strategy, especially as the number of connections increases. This could be because the Budget Steepest Ascent Strategy does not stop until a single point in the input vector has all of the budget or until the process is repeated one thousand times.
+
+If there are a lot of connections, there are a lot of neighbors, which increases the chances of the neighbor with the highest profit being in a direction which distributes the budget throughout the input vector as opposed to concentrating all of the budget into a single point of the input vector. As long as no single point has all of the budget, the strategy can move in a direction that reduces the profit level, and when the function finally stops once it has repeated one thousand times, it is at a profit level that is near zero.
+
+## Conclusion
+This paper implements the ideas in Kane's paper \emph{Local Hillclimbing on an Economic Landscape} (1996) by using the proposed complex profit landscape to analyze different optimization strategies. The real world economy is complex and difficult to optimize, so employing models which are similarly complex and difficult to optimize is only appropriate
+
+Our findings are comparable to that of Kane (1996): strategies that slowly increase in profit levels as they venture through a complex economic landscape generally yield better long-run profits than strategies that constantly work to move in directions that will yield the greatest immediate profit levels. However, we also found that a strategy that employs the idea of moving in a direction that may yield lower profit levels in hopes that it prevents itself from becoming stuck at a low local maximum of a landscape can have variable results. Strategies similar to the ones successful in this paper can be used in other simulations and ultimately by firms to maximize long-run profits.
+
+## References
+Kane, David. Local Hillclimbing on an Economic Landscape. \emph{Evolutionary Programming V}. Santa Fe Institute, 1996.
+
+\bibliography{patnaik}
+
+

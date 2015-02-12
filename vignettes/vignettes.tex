@@ -1,0 +1,325 @@
+% !TeX root = RJwrapper.tex
+\title{Ideas in Kane's Local Hillclimbing on an Economic Landscape}
+\author{by Sohum Patnaik '18}
+
+\maketitle
+
+\abstract{
+In this paper we carry out the ideas in Kane's
+\emph{Local Hillclimbing on an Economic Landscape} (1996) by applying
+optimization strategies on models outlined in his paper.
+}
+
+\subsection{Introduction}\label{introduction}
+
+Firms have always been interested in finding the optimal allocation of
+resources to produce the greatest profits. However, simulations have
+often been inaccurate since proposed profit maximizing functions were
+tractable and easy to maximize. This is not the case for firms in the
+real world. Kane (1996) argues that profit functions that are difficult
+to maximize for all agents are more worthwhile to utilize for modeling
+purposes. Consequently, Kane (1996) proposes a profit function that
+enables various strategies of firms to be tested on complex landscapes
+that mimic a real world economy.
+
+In this paper, we carry out Kane's (1996) ideas and analyze various
+strategies for profit maximization. We see how the behavior of firms
+affects those firms' long-run profits and end up with similar findings
+to Kane (1996): firms that move slower in maximizing their profits
+generally end up with higher long-run profits than firms that move
+quickly in maximizing their profits.
+
+\subsection{Data and Methods}\label{data-and-methods}
+
+For our analysis, we generated a random input vector on a landscape
+based off a given budget and number of inputs. We then carried out
+various optimization strategies where firms search their neighborhood,
+as defined by Kane (1996), to analyze how the different strategies
+perform in trying to maximize long-run profits. Multiple strategies were
+used with a varying number of connections, which determines how many
+neighbors every point in each input vector has.
+
+\subsection{Strategies}\label{strategies}
+
+Hillclimbing strategies and many of its variants, several of which were
+demonstrated by Kane (1996), are primarily used in our analysis.
+
+The Steepest Ascent Strategy in Tables I, II, and III is a strategy that
+moves to the neighbor with the highest profit and continues to do so
+until a local maximum is reached.
+
+The Median Ascent Strategy in Tables I, II, and III is a strategy that
+moves to the neighbor whose profits are the median of the neighbors with
+profits higher than the current input vector and continues to do so
+until a local maximum is reached.
+
+The Least Ascent Strategy in Tables I, II, and III is a strategy that
+moves to the neighbor with the lowest profit that is still higher than
+the current input vector's profit and continues to do so until a local
+maximum is reached.
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+\begin{Schunk}
+
+\begin{tabular}{l|c|c|c|c|c}
+\hline
+  & 1 & 2 & 3 & 4 & 5\\
+\hline
+Steepest Ascent & 14.7 (0.2) & 24.1 (0.2) & 31.5 (0.3) & 37.6 (0.3) & 43.2 (0.4)\\
+\hline
+Median Ascent & 16.5 (0.2) & 25.5 (0.3) & 32.7 (0.3) & 38.2 (0.4) & 43.3 (0.4)\\
+\hline
+Least Ascent & 19.1 (0.2) & 29.4 (0.3) & 39.2 (0.5) & 43 (0.5) & 48.9 (0.6)\\
+\hline
+\end{tabular}
+
+\end{Schunk}
+\\
+\emph{Table I}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function come from [-1,1]. Standard errors are in parentheses.
+\end{center}
+
+In Table I, the Median Ascent Strategy consistently outperforms the Steepest Ascent
+Strategy, and the Least Ascent Strategy consistently outperforms the
+Median Ascent Strategy. We see that strategies that move through a
+landscape with the intent of slowly increasing their profit values end
+up doing better than strategies that try to increase their profit values
+as quickly as possible.
+
+\newpage
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+\begin{Schunk}
+
+\begin{tabular}{l|c|c|c|c|c}
+\hline
+  & 1 & 2 & 3 & 4 & 5\\
+\hline
+Steepest Ascent & -7.3 (0.2) & -0.2 (0.2) & 6.4 (0.2) & 13 (0.3) & 18.5 (0.3)\\
+\hline
+Median Ascent & -6.6 (0.2) & 0.8 (0.2) & 8 (0.3) & 13.8 (0.3) & 19.8 (0.4)\\
+\hline
+Least Ascent & -2.9 (0.3) & 9.4 (0.3) & 23.9 (0.5) & 36.2 (0.7) & 42.5 (0.7)\\
+\hline
+\end{tabular}
+
+\end{Schunk}
+\\
+\emph{Table II}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function come from [0,1] for linear terms and squared terms, and from [-1,0] for cross products. Standard errors are in parentheses.
+\end{center}
+
+Even though a different profit function (due to a different range of
+coefficients) is used in Table II than in Table I, similar results are
+found. The Least Ascent Strategy constantly outperforms the other two
+strategies that move input vectors to neighbors with higher profit
+levels.
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+\begin{Schunk}
+
+\begin{tabular}{l|c|c|c|c|c}
+\hline
+  & 1 & 2 & 3 & 4 & 5\\
+\hline
+Steepest Ascent & 11.6 (0.4) & 18.5 (0.3) & 21.7 (0.3) & 22.3 (0.3) & 23 (0.3)\\
+\hline
+Median Ascent & 13.2 (0.3) & 19.3 (0.3) & 22.5 (0.3) & 22.6 (0.3) & 23.5 (0.3)\\
+\hline
+Least Ascent & 13.9 (0.3) & 21.2 (0.3) & 22.6 (0.3) & 23.3 (0.3) & 23.1 (0.3)\\
+\hline
+\end{tabular}
+
+\end{Schunk}
+\\
+\emph{Table III}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function are 0 for linear terms, come from [-19,0] for squared terms, and come from [0,2] for cross products. Standard errors are in parentheses.
+\end{center}
+
+Table III is interesting to analyze since even though we find a similar
+trend to Kane's (1996) findings, the values of the tables themselves
+differ greatly. The profit function used to generate this table
+penalizes input values that are different from each other. However, we
+still find that the Least Ascent Strategy outperforms the other two
+strategies in every case other than when there are five connections per
+input.
+
+The different versions of the profit functions shown through Tables I,
+II, and III clearly demonstrate that strategies that slowly move to
+neighbors with higher profit levels than the current input vector's
+profit generally end up with higher long-run profits than strategies
+that quickly move to neighbors with the highest possible profits.
+However, it is worth comparing those results with a strategy where an
+input vector moves to a random neighbor with a profit level higher than
+its own to see if it will yield results that are similar to one of the
+strategies used in Tables I, II, and III.
+
+The Random Ascent Strategy in Table IV is a strategy that carries out
+the Stochastic Hill Climbing strategy where an input vector moves to a
+randomly chosen neighbor whose profit is higher than the current input
+vector's profit level and continues to do so until a local maximum is
+reached.
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+\begin{Schunk}
+
+\begin{tabular}{l|c|c|c|c|c}
+\hline
+  & 1 & 2 & 3 & 4 & 5\\
+\hline
+Random Ascent & 16.1 (0.2) & 25.5 (0.3) & 32.6 (0.3) & 39.9 (0.4) & 45.3 (0.5)\\
+\hline
+\end{tabular}
+
+\end{Schunk}
+\\
+\emph{Table IV}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function come from [-1,1]. Standard errors are in parentheses.
+\end{center}
+
+Given that we use the same profit function in Table IV as the profit
+function used in Table I, it is most appropriate to compare those two
+tables. We find that the Random Ascent Strategy gives us results that
+are closest to the Median Ascent Strategy. This makes sense because the
+table shows us the means of the normalized profits over one thousand
+landscapes, so the Random Ascent Strategy should return results that are
+similar to the average of the Least Ascent Strategy and Steepest Ascent
+Strategy, which is similar to the Median Ascent Strategy.
+
+We have found that strategies that constantly move to neighbors with
+higher profit levels than their own usually end up finding a local
+maximum. This prevents them from finding the global maximum that most
+firms are often looking for. Therefore, it would be interesting to
+implement a strategy which gives firms the option of moving to a
+neighbor with a lower profit level than their current input vector, as
+this can possibly lead to ultimately finding an input vector with a
+profit level that is closer to the global maximum.
+
+Also, given the profit function that Kane (1996) proposes and the
+results of the long-run profits found in Tables I, II, III, and IV, it
+would be interesting to look at a strategy that continues moving to
+neighbors until all of the budget is expended on a single point of an
+input vector (usually on the point with the highest coefficient) since
+those input vectors will often yield higher profits than input vectors
+where the budget is distributed evenly throughout the vector.
+
+The Budget Steepest Ascent Strategy in Table V is a strategy that moves
+to the neighboring input vectors with the highest profits until a single
+point of the input vector has all of the budget or until the process is
+repeated one thousand times.
+
+The Budget Median Ascent Strategy in Table V is a strategy that moves to
+a neighboring input vector which has a median profit level of the
+neighboring input levels that have higher profit levels than the current
+input vector until a single point of the input vector has all of the
+budget or until the process is repeated one thousand times.
+
+The Budget Least Ascent Strategy in Table V is a strategy that moves to
+a neighboring input vector with the lowest profit that is still higher
+than the profit of the current input vector until a single point of the
+input vector has all of the budget or until the process is repeated one
+thousand times.
+
+\begin{center}
+\hspace{2cm} \textbf{Number of Connections Per Input}
+\begin{flushleft}
+\hspace{2.5cm} \textbf{Strategy}
+\end{flushleft}
+\begin{Schunk}
+
+\begin{tabular}{l|c|c|c|c|c}
+\hline
+  & 1 & 2 & 3 & 4 & 5\\
+\hline
+Steepest Ascent & 62.3 (1.1) & 65.8 (1.1) & 66.6 (1.1) & -0.1 (0.2) & 0.2 (0.2)\\
+\hline
+Median Ascent & 62.2 (1.1) & 63.3 (1.1) & 66.6 (1) & 65.8 (1) & 62.2 (1.1)\\
+\hline
+Least Ascent & 62.1 (1.1) & 59.5 (1) & 56.8 (1.1) & 59.2 (1.1) & 59.3 (1)\\
+\hline
+\end{tabular}
+
+\end{Schunk}
+\\
+\emph{Table V}: The mean normalized profits for one thousand landscapes. Coefficients for the profit function come from [-1,1]. Standard errors are in parentheses.
+\end{center}
+
+The three strategies utilized in Table V mostly yield much higher
+results than the results of the strategies used in the previous tables.
+
+All three strategies perform similarly with one connection, but the
+results become more interesting as the number of connections increases.
+While we have normally found the slowest-moving strategy to outperform
+the other strategies, we find that in Table V, the Budget Least Ascent
+Strategy, the slowest-moving strategy of the three strategies that are
+used, finds lower long-run profits than the other strategies when there
+are two and three connections. When there are four and five connections,
+the Budget Median Ascent Strategy outperforms the Budget Least Ascent
+Strategy. It is even more interesting to note that as there are four and
+five connections, the long-run profits from the Budget Steepest Ascent
+Strategy drops to near zero. These results can probably be attributed to
+the fact that this strategy allows for the movement in directions that
+would result in lower profits.
+
+Given the strategies used, the Budget Median Ascent Strategy and the
+Budget Least Ascent Strategy have been found to be safer strategies to
+use than the Budget Steepest Ascent Strategy, especially as the number
+of connections increases. This could be because the Budget Steepest
+Ascent Strategy does not stop until a single point in the input vector
+has all of the budget or until the process is repeated one thousand
+times.
+
+If there are a lot of connections, there are a lot of neighbors, which
+increases the chances of the neighbor with the highest profit being in a
+direction which distributes the budget throughout the input vector as
+opposed to concentrating all of the budget into a single point of the
+input vector. As long as no single point has all of the budget, the
+strategy can move in a direction that reduces the profit level, and when
+the function finally stops once it has repeated one thousand times, it
+is at a profit level that is near zero.
+
+\subsection{Conclusion}\label{conclusion}
+
+This paper implements the ideas in Kane's paper
+\emph{Local Hillclimbing on an Economic Landscape} (1996) by using the
+proposed complex profit landscape to analyze different optimization
+strategies. The real world economy is complex and difficult to optimize,
+so employing models which are similarly complex and difficult to
+optimize is only appropriate
+
+Our findings are comparable to that of Kane (1996): strategies that
+slowly increase in profit levels as they venture through a complex
+economic landscape generally yield better long-run profits than
+strategies that constantly work to move in directions that will yield
+the greatest immediate profit levels. However, we also found that a
+strategy that employs the idea of moving in a direction that may yield
+lower profit levels in hopes that it prevents itself from becoming stuck
+at a low local maximum of a landscape can have variable results.
+Strategies similar to the ones successful in this paper can be used in
+other simulations and ultimately by firms to maximize long-run profits.
+
+\subsection{References}\label{references}
+
+Kane, David. Local Hillclimbing on an Economic Landscape.
+\emph{Evolutionary Programming V}. Santa Fe Institute, 1996.
+
+\bibliography{patnaik2}
+
+\address{
+Sohum Patnaik\\
+\\
+}
+\href{mailto:sp12@williams.edu}{\nolinkurl{sp12@williams.edu}}
+
