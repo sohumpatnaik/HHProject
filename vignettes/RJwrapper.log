@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 FEB 2015 06:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  12 FEB 2015 06:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1232,29 +1232,29 @@ LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 13.
 
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 69.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 70.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 69.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 70.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 69.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 70.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 69.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 70.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 69.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 70.
 
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1zplm.fd
@@ -1265,34 +1265,34 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 69.
+(Font)              scaled to size 9.37807pt on input line 70.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 69.
+(Font)              scaled to size 7.29405pt on input line 70.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 69.
+(Font)              scaled to size 5.21004pt on input line 70.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 69.
+(Font)              scaled to size 9.37807pt on input line 70.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 69.
+(Font)              scaled to size 7.29405pt on input line 70.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 5.21004pt on input line 69.
+(Font)              scaled to size 5.21004pt on input line 70.
 
 
-./vignettes.tex:82: LaTeX Error: There's no line here to end.
+./vignettes.tex:83: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.82 \\
+l.83 \\
        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1302,39 +1302,39 @@ or  <return>  to continue without it.
 
 ]
 
-./vignettes.tex:115: LaTeX Error: There's no line here to end.
+./vignettes.tex:116: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.115 \\
+l.116 \\
         
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-./vignettes.tex:145: LaTeX Error: There's no line here to end.
+./vignettes.tex:146: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.145 \\
+l.146 \\
         
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-./vignettes.tex:189: LaTeX Error: There's no line here to end.
+./vignettes.tex:190: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.189 \\
+l.190 \\
         
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1342,13 +1342,13 @@ or  <return>  to continue without it.
 
 [2]
 
-./vignettes.tex:256: LaTeX Error: There's no line here to end.
+./vignettes.tex:257: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.256 \\
+l.257 \\
         
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1356,12 +1356,12 @@ or  <return>  to continue without it.
 
 [3]
 No file RJwrapper.bbl.
-LaTeX Font Info:    Try loading font information for T1+zi4 on input line 325.
+LaTeX Font Info:    Try loading font information for T1+zi4 on input line 326.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/inconsolata/t1zi4.fd
 File: t1zi4.fd 2013/06/09 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.18004pt on input line 325.
+(Font)              scaled to size 9.18004pt on input line 326.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1373,7 +1373,7 @@ Package microtype Info: Character `textemdash ' is missing
 (microtype)             in font `T1/zi4/m/n/9'.
 (microtype)             Ignoring protrusion settings for this character.
 
-Underfull \hbox (badness 10000) in paragraph at lines 324--326
+Underfull \hbox (badness 10000) in paragraph at lines 325--327
 
  []
 
@@ -1411,7 +1411,7 @@ ive/2014/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/l
 ocal/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/te
 xlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2
 014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (4 pages, 72423 bytes).
+Output written on RJwrapper.pdf (4 pages, 72463 bytes).
 PDF statistics:
  58 PDF objects out of 1000 (max. 8388607)
  47 compressed objects within 1 object stream

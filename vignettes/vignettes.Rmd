@@ -107,7 +107,7 @@ Firms have always been interested in finding the optimal allocation of resources
 In this paper, we carry out Kane's (1996) ideas and analyze various strategies for profit maximization. We see how the behavior of firms affects those firms' long-run profits and end up with similar findings to Kane (1996): firms that move slower in maximizing their profits generally end up with higher long-run profits than firms that move quickly in maximizing their profits.
 
 ## Data and Methods
-For our analysis, we generated a random input vector on a landscape based off a given budget and number of inputs. We then carried out various optimization strategies where firms search their neighborhood, as defined by Kane (1996), to analyze how the different strategies perform in trying to maximize long-run profits. Multiple strategies were used with a varying number of connections, which determines how many neighbors every point in each input vector has. For all our tables, we had a budget of fifty and twenty inputs.
+For our analysis, we generated a random input vector on a landscape based off a given budget and number of inputs. We then carried out various optimization strategies where firms search their neighborhood, as defined by Kane (1996), to analyze how the different strategies perform in trying to maximize long-run profits. Multiple strategies were used with a varying number of connections, which determines how many neighbors every point in each input vector has. For all our tables, we had a budget of fifty and twenty inputs. All of our tables' values are multiplied by one hundred.
 
 ## Strategies
 Hillclimbing strategies and many of its variants, several of which were demonstrated by Kane (1996), are primarily used in our analysis.
